@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://urban-store-amckr84qc-harshkhavale.vercel.app/api";
+const BASE_URL = "https://vercel.com/harshkhavale/urban-store-server/api";
 
 // const TOKEN = "ujwdjwojdowwq";
 export const publicRequest = axios.create({

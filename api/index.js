@@ -4,7 +4,7 @@ import cors from 'cors';
 const app = express();
 
 const corsOptions ={
-  origin:'*', 
+  origin:'https://urban-store-in-apk.vercel.app', 
   credentials:true,            
   optionSuccessStatus:200
 }
