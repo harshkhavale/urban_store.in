@@ -1,4 +1,11 @@
-import { loginFailure, loginStart, loginSuccess, registerFailure, registerStart, registerSuccess } from "./userSlice";
+import {
+  loginFailure,
+  loginStart,
+  loginSuccess,
+  registerFailure,
+  registerStart,
+  registerSuccess,
+} from "./userSlice";
 import { userRequest } from "./requestMethods";
 
 export const login = async (dispatch, user) => {
@@ -6,7 +13,11 @@ export const login = async (dispatch, user) => {
   try {
     const res = await userRequest.post("/auth/login", user);
     console.log("login res - ", res);
-    dispatch(loginSuccess(res.data));
+    if (res.status === 200) {
+      dispatch(loginSuccess(res.data));
+    } else {
+      dispatch(loginFailure());
+    }
   } catch (error) {
     dispatch(loginFailure());
   }

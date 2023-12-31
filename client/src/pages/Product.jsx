@@ -11,6 +11,7 @@ import Options from "../components/Options.jsx";
 import toast from "react-hot-toast";
 import StripeCheckout from "react-stripe-checkout";
 import { urbanlogo } from "../assets/index.js";
+import { userRequest } from "../redux/requestMethods.js";
 const Product = () => {
   const KEY = process.env.REACT_APP_STRIPE;
   const dispatch = useDispatch();
@@ -54,17 +55,20 @@ const Product = () => {
 
   const getProduct = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/products/find/` + id
-      );
-      console.log("res : ", res);
+      const res = await userRequest.get(`/products/find/${id}`);
+      console.log("res: ", res);
+  
       setProduct(res.data);
+  
       const index = 0;
-
       setDisplayImg(res.data.images[index]);
-      console.log("product : ", product);
-    } catch (error) {}
+  
+      console.log("product: ", res.data);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
   };
+  
 
   useEffect(() => {
     getProduct();

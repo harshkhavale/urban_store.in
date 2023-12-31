@@ -24,7 +24,6 @@ const Register = () => {
       toast.error("Password and confirm password should be the same!");
     } else {
       try {
-        // Assuming register function returns a promise or can be awaited
         await register(dispatch, {
           fullname,
           email,
@@ -192,7 +191,7 @@ const Register = () => {
                 >
                   {isFetching ? (
                     <Box sx={{ display: "flex", justifyContent: "center" }}>
-                      <CircularProgress style={{ color: "#EC7063 " }} />
+                      <CircularProgress style={{ color: "white" }} />
                     </Box>
                   ) : (
                     <p>sign up</p>

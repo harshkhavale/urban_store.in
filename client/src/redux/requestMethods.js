@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://urban-store-amckr84qc-harshkhavale.vercel.app/api";
 
 // const TOKEN = "ujwdjwojdowwq";
 export const publicRequest = axios.create({

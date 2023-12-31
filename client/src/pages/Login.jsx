@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { bag, google, whitebag } from "../assets";
-import { Link ,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../redux/apiCalls.js";
 import toast from "react-hot-toast";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -18,40 +18,37 @@ const Login = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-    await login(dispatch, { email, password });
-    if (!error) {
-      toast.success("Login successful!");
-      navigate("/");
-    } else {
+      await login(dispatch, { email, password });
+      if (error) {
+        toast.error("Login failed. Please try again.");
+
+        return;
+      } else {
+        toast.success("Login successful!");
+        navigate("/");
+      }
+    } catch (err) {
+      // Handle any errors that might occur during registration
+      console.error("Login failed:", err);
       toast.error("Login failed. Please try again.");
     }
-  } catch (error) {
-    // Handle any errors that might occur during registration
-    console.error("Registration failed:", error);
-    toast.error("Registration failed. Please try again.");
-  }
   };
 
   return (
     <div className="loginpage overflow-x-hidden overflow-y-hidden relative mb-12 flex justify-center items-center gap-8">
-      {
-        isNonMobileScreen?(
-<div>
-<div className="color rounded-full -z-10 bg-red-400 md:p-80 top-[-200px] absolute md:left-56 "></div>
-      <div className="2ndclr rounded-full -z-10 bg-red-300 md:p-52 absolute md:right-[300px] md:mt-[100px]"></div>
-      
-</div>
-        ):(
-<div>
- <div className="color rounded-full -z-10 bg-red-400 p-64 md:p-96 absolute md:bottom-0 md:left-32 right-12 top-[-100px] "></div>
-      <div className="2ndclr rounded-full -z-10 p-40 bg-red-300 md:p-52 absolute md:right-[300px] right-[-100px] top-[500px] md:mt-[500px]"></div>
-      
-</div>
-        )
-      }
-    
-      <div 
-      className="card flex flex-col  gap-4 ">
+      {isNonMobileScreen ? (
+        <div>
+          <div className="color rounded-full -z-10 bg-red-400 md:p-80 top-[-200px] absolute md:left-56 "></div>
+          <div className="2ndclr rounded-full -z-10 bg-red-300 md:p-52 absolute md:right-[300px] md:mt-[100px]"></div>
+        </div>
+      ) : (
+        <div>
+          <div className="color rounded-full -z-10 bg-red-400 p-64 md:p-96 absolute md:bottom-0 md:left-32 right-12 top-[-100px] "></div>
+          <div className="2ndclr rounded-full -z-10 p-40 bg-red-300 md:p-52 absolute md:right-[300px] right-[-100px] top-[500px] md:mt-[500px]"></div>
+        </div>
+      )}
+
+      <div className="card flex flex-col  gap-4 ">
         <div
           className="logo py-4 text-3xl text-white relative md:left-[-40px] rounded-lg mt-8 font-bold flex text-start justify-start items-center"
           style={{ fontFamily: "'Happy Monkey', cursive" }}
@@ -113,7 +110,7 @@ const Login = () => {
                 >
                   {isFetching ? (
                     <Box sx={{ display: "flex", justifyContent: "center" }}>
-                      <CircularProgress style={{ color: "#EC7063 " }} />
+                      <CircularProgress style={{ color: "white" }} />
                     </Box>
                   ) : (
                     <p>sign in</p>
