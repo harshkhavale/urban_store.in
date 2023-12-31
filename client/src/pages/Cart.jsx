@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Announcements from "../components/Announcements";
+
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import Footer from "../components/Footer";
-import Newsletter from "../components/Newsletter";
-import product6 from "../assets/71J5v1vrKaL._UX679_.jpg";
-import product7 from "../assets/71V0TFm3MsL._UL1293_.jpg";
-import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -15,10 +11,17 @@ import { useNavigate } from "react-router-dom";
 import { CloseOutlined } from "@mui/icons-material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import BeenhereOutlinedIcon from "@mui/icons-material/BeenhereOutlined";
-import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import { bow, ribbon } from "../assets";
+import { ribbon, urbanlogo } from "../assets";
+import { removeProduct } from "../redux/cartRedux.js";
+import toast from "react-hot-toast";
+
 const KEY = process.env.REACT_APP_STRIPE;
 const Cart = () => {
+  const dispatch = useDispatch();
+
+  const handleDelete = (productId,size,color) => {
+    dispatch(removeProduct({ productId,size,color }));
+  };
   const [stripeToken, setStripeToken] = useState(null);
   const onToken = (token) => {
     setStripeToken(token);
@@ -36,8 +39,12 @@ const Cart = () => {
           tokenId: stripeToken.id,
           amount: cart.total * 100,
         });
+        toast.success("transaction successfull!")
         history.push("/success", { data: res.data });
-      } catch (error) {}
+      } catch (error) {
+        toast.error("transaction failed!")
+
+      }
     };
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, history]);
@@ -48,7 +55,7 @@ const Cart = () => {
         <div className="cartage   flex w-full gap-0 ">
           <div className="box flex flex-col w-7/12 gap-2">
             <div className=" upperbox flex-col  ">
-              <div className="box1 border m-2 flex rounded-md gap-2 p-2">
+              <div className="box1 border m-2 flex justify-between rounded-md gap-2 p-2">
                 <p className="font-bold">check delivery time & services</p>
                 <button className=" bg-transparent border-2 border-red-400 font-bold text-red-400 p-1 rounded-md">
                   continue shopping
@@ -95,13 +102,14 @@ const Cart = () => {
                           <div className="selectedcolor bg-slate-100 flex items-center p-1">
                             <p className="font-bold px-2">color </p>
 
-                            <div className="color bg-gray-500  h-4 w-4">
-                              {product.selectedColor}
-                            </div>
+                            <div
+                              style={{ backgroundColor: product.color }}
+                              className="color h-4 w-4"
+                            ></div>
                           </div>
                           <div className="size flex bg-slate-100 items-center p-1">
                             <p className="font-bold">Size </p>
-                            <p className="font-bold px-2">M</p>
+                            <p className="font-bold px-2">{product.size}</p>
                           </div>
                         </div>
                         <div className="price flex gap-2">
@@ -111,28 +119,24 @@ const Cart = () => {
                           </p>
                         </div>
 
-
-
                         <div className="pricer my-2 relative h-full  flex justify-center items-center gap-4">
                           <div className="quantity border-2 border-slate-300 rounded-md flex items-center gap-4">
-                            <div className="minus w-full cursor-pointer bg-slate-300">
+                            <div className="minus w-full cursor-pointer border border-slate-300">
                               <RemoveIcon />
                             </div>
-                            <div className="value  rounded-lg">
-                              1
-                            </div>
-                            <div className="plus cursor-pointer bg-slate-300">
+                            <div className="value  rounded-lg">1</div>
+                            <div className="plus cursor-pointer border border-slate-300">
                               <AddIcon />
                             </div>
                           </div>
                         </div>
-
-
-
                       </div>
                     </div>
                     <div className="btn absolute right-0 top-0 ">
-                      <button className=" bg-transparent border border-slate-300 p-1 rounded-md">
+                      <button
+                        className="bg-transparent border bg-white border-slate-300 p-1 rounded-md"
+                        onClick={()=>handleDelete(product._id,product.size,product.color)}
+                      >
                         <CloseOutlined />
                       </button>
                     </div>
@@ -165,7 +169,7 @@ const Cart = () => {
               </p>
               <div className="p-2 m-2 design flex flex-col md:flex-row items-center bg-red-100 rounded-md">
                 <img src={ribbon} className=" h-20  w-20" alt="bow" />
-                <div className="text-start flex flex-col gap-2">
+                <div className="text-start p-4 flex flex-col gap-2">
                   <p className="font-bold">Buying for a loved one?</p>
                   <p className="text-xs">
                     Gift wrap and personalised message on card,only for ₹ 25
@@ -182,25 +186,25 @@ const Cart = () => {
             <div className="flex flex-col gap-2 p-2">
               <div className="subtotal  flex justify-between ">
                 <p className=" font-bold">Subtotal</p>
-                <p>80</p>
+                <p>0 ₹</p>
               </div>
               <div className="subtotal flex justify-between ">
                 <p className=" font-bold ">Shipping</p>
-                <p>$590</p>
+                <p>0 ₹</p>
               </div>
               <div className="subtotal flex justify-between ">
                 <p className=" font-bold">Discount</p>
-                <p>590</p>
+                <p>0 ₹</p>
               </div>
               <div className="subtotal font-bold flex justify-between ">
                 <p className=" font-bold">Total Amount</p>
-                <p className=" text-black">{cart && cart.total}</p>
+                <p className=" text-black">{cart && cart.total} ₹</p>
               </div>
             </div>
 
             <StripeCheckout
               name="Urban_Store"
-              image="https://avatars.githubsercontent.com/u/1486366?v=4"
+              image={urbanlogo}
               billingAddress
               shippingAddress
               description={`Your total is ${cart.total}`}

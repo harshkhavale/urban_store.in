@@ -1,28 +1,30 @@
-import React from 'react'
-import Slider from '../components/Slider'
-import Categories from '../components/Categories'
-import Products from '../components/Products'
-import Newsletter from '../components/Newsletter'
-import Footer from '../components/Footer'
-import Announcements from '../components/Announcements'
-import Navbar from '../components/Navbar'
-import Carousel from '../components/Carousel'
+import React, { useEffect } from "react";
+import Slider from "../components/Slider";
+import Categories from "../components/Categories";
+import Products from "../components/Products";
+import { useDispatch } from "react-redux";
+import { setCart } from "../redux/cartRedux";
 const Home = () => {
+  const dispatch = useDispatch();
+  // useEffect(()=>{
+  //   const storedCart = JSON.parse(localStorage.getItem('cart'));
+  //   if (storedCart) {
+  //     dispatch(setCart(storedCart));
+  //   }
+  // },[])
   return (
-    <div >
+    <div>
       <div>
-      <Slider/>
+        <Slider />
 
-      <Categories/>
-      <Carousel/>
-
-      <Products/>
+        <Categories />
+        <p className="font-bold text-white text-start bg-teal-400 w-min px-4">
+          #trending today
+        </p>
+        <Products />
       </div>
-      
-      
-     
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

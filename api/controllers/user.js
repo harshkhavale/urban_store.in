@@ -9,7 +9,7 @@ export const getUser = async (req, res) => {
     res.status(200).json(others);
   } catch (error) {
     res.status(500).json({
-      error: error.message,
+      message: error.message,
     });
     console.log("error!");
   }
@@ -86,7 +86,7 @@ export const getUserStats = async (req, res) => {
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({
-      error: error.message,
+      message: error.message,
     });
     console.log("error!");
   }

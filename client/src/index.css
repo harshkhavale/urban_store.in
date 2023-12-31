@@ -29,3 +29,6 @@ code {
   font-family: 'Sevillana', cursive;
 
 }
+.woocommerce-checkout #payment ul.payment_methods li img.stripe-icon{
+  min-width: 40px;
+}

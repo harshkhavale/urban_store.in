@@ -1,14 +1,11 @@
 import React from "react";
-import { categories,banner } from "../assets";
+import { categories, banner } from "../assets";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
     <div className="cat relative">
-     
-
       <div className="flex flex-wrap md:mt-[-80px] backdrop-blur-sm bg-white/30 justify-center md:mx-2">
-
         {categories.map((cat, index) => (
           <div
             key={"index_" + index}

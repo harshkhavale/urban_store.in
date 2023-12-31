@@ -15,7 +15,7 @@ import Login from "./pages/Login";
 import { useSelector } from "react-redux";
 function App() {
   const isNonMobileScreen = useMediaQuery('(min-width:600px)');
-  const admin = false;
+  const admin = true;
   return (
     <div className="App">{
       admin ? <Topbar />: ""

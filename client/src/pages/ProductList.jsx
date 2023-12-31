@@ -20,8 +20,8 @@ const ProductList = () => {
   console.log(filters)
   return (
     <div>
-      <div className="productlistpage my-12 md:my-20 md:mx-10 ">
-        <div className="title text-2xl font-semibold text-start p-2">{category}</div>
+      <div className="productlistpage ">
+      <p className="font-bold text-white my-4 text-start bg-teal-400 w-min px-4">#{category}</p>
         <div className="filters flex justify-between items-center mx-10">
 
           <div className="filter">
@@ -37,7 +37,7 @@ const ProductList = () => {
               <option>XL</option>
               <option >XXL</option>
             </select>
-            <select onChange={handleFilters} name="color" className="border border-slate-300 p-1 rounded-sm" id="filter">
+            <select  name="color" className="border border-slate-300 p-1 rounded-sm" id="filter">
               <option value="" disabled >color</option>
               <option>
                 Red
@@ -52,7 +52,7 @@ const ProductList = () => {
           <div className="sort">
             <p className="text-xl font-semibold">sort products</p>
 
-            <select name="sort" onChange={e=>setSort(e.target.value)} className="border border-slate-300 p-1 rounded-sm" id="sort">
+            <select name="sort"  className="border border-slate-300 p-1 rounded-sm" id="sort">
               <option value="newest">
                 Newest
               </option>

@@ -1,43 +1,32 @@
-import add1 from "../assets/portrait-handsome-confident-stylish-hipster-lambersexual-modelman-dressed-jacket-jeans-fashion-male-posing-studio-near-white-wall.jpg";
-import add2 from "../assets/portrait-young-stylish-girl-model-casual-summer-clothes-brown-hat-with-natural-makeup-glasses-isolated-showing-peace-sign.jpg";
-import kid from "../assets/portrait-teenagers-looking-serious-showing-peace-sign.jpg";
-import saree from "../assets/portrait-young-woman-wearing-tradition-sari-garment.jpg";
-import western from "../assets/woman-wearing-high-heels-stocking.jpg";
-import loginbg from "../assets/young-satisfied-woman-smiling-showing-plastic-credit-card-holding-shopping-bags-buying-with-contactless-payment-standing-blue-background.jpg";
-import womenscasuals from "../assets/young-woman-with-shopping-bags-beautiful-dress.jpg";
-import mens from "../assets/full-length-portrait-confident-successful-man.jpg";
-import add3 from "../assets/portrait-smiling-beautiful-girl-her-handsome-boyfriend-laughing-happy-cheerful-couple-sunglasses.jpg";
-import product1 from "../assets/514ftDnqfvL.jpg";
-import product2 from "../assets/71V0TFm3MsL._UL1293_.jpg";
-import product3 from "../assets/71J5v1vrKaL._UX679_.jpg";
-import product4 from "../assets/613mMOWnrxL._UL1280_.jpg";
-import product5 from "../assets/713EWcF36KL._UL1500_.jpg";
-import product6 from "../assets/51yUI8YGhoL.jpg";
+import add1 from "../assets/portrait-handsome-confident-stylish-hipster-lambersexual-modelman-dressed-jacket-jeans-fashion-male-posing-studio-near-white-wall-min.jpg";
+import add2 from "../assets/portrait-young-stylish-girl-model-casual-summer-clothes-brown-hat-with-natural-makeup-glasses-isolated-showing-peace-sign-min.jpg";
+import add3 from "../assets/portrait-smiling-beautiful-girl-her-handsome-boyfriend-laughing-happy-cheerful-couple-sunglasses-min.jpg";
 import mastercard from "../assets/card.png";
 import paypal from "../assets/paypal.png";
 import visa from "../assets/visa.png";
+import whitebag from '../assets/whitebag.png'
 import bg1 from "../assets/20824341_6368590.svg";
 import bg2 from "../assets/20824342_6343839.svg";
-import logo from "../assets/shop.png";
 import bag from "../assets/bag.png";
 import ind from "../assets/india.png";
 import usa from "../assets/united-states.png";
 import jap from "../assets/japan.png";
-import girl from "../assets/girl-with-nice-hairstyle-posing-holding-heels-shoes-hands.jpg";
+import girl from "../assets/girl-with-nice-hairstyle-posing-holding-heels-shoes-hands-min.jpg";
 import banner from "../assets/banner.png";
-import cat3 from "../assets/young-man-dressed-coat-isolated-white-wall.jpg";
-import cat1 from "../assets/full-shot-kids-posing-together.jpg";
-import cat2 from "../assets/portrait-smiling-beautiful-woman.jpg";
+import cat3 from "../assets/young-man-dressed-coat-isolated-white-wall-min.jpg";
+import cat1 from "../assets/full-shot-kids-posing-together-min.jpg";
+import cat2 from "../assets/portrait-smiling-beautiful-woman-min.jpg";
 import addbanner1 from "../assets/addbanner1.png";
 import addbanner2 from "../assets/addbanner2.png";
 import addbanner3 from "../assets/addbanner3.png";
 import addbanner4 from "../assets/addbanner4.png";
-import bow from '../assets/bow.png'
 import ribbon from '../assets/ribbon.png'
-
-export { mastercard, visa, paypal, banner };
-export { bg1, bg2, logo, bag, loginbg };
-export { ind, usa,bow,ribbon, jap, addbanner1, addbanner2 };
+import google from '../assets/google.png'
+import facebook from '../assets/facebook.png'
+import urbanlogo from '../assets/urbanstorelogo.png'
+export { mastercard, visa, paypal, banner,urbanlogo };
+export { bg1, bg2, bag,whitebag };
+export { ind, usa,ribbon, jap, addbanner1, addbanner2,google,facebook };
 const adds = [
   {
     title: "ZENZ TRENDS",
@@ -84,66 +73,20 @@ const categories = [
     id: 3,
     img: cat2,
     title: "WOMEN",
-    cat: "women",
+    cat: "female",
   },
   {
     id: 4,
     img: cat3,
     title: "MENS",
-    cat: "mens",
+    cat: "male",
   },
 
   {
     id: 45,
     img: girl,
-    title: "WESTERN",
-    cat: "western",
-  },
-];
-const products = [
-  {
-    id: 65,
-    img: product6,
-  },
-  {
-    id: 1,
-    img: product1,
-  },
-  {
-    id: 2,
-    img: product2,
-  },
-  {
-    id: 3,
-    img: product3,
-  },
-  {
-    id: 4,
-    img: product4,
-  },
-  {
-    id: 5,
-    img: product5,
-  },
-  {
-    id: 11,
-    img: product1,
-  },
-  {
-    id: 12,
-    img: product2,
-  },
-  {
-    id: 13,
-    img: product3,
-  },
-  {
-    id: 14,
-    img: product4,
-  },
-  {
-    id: 15,
-    img: product5,
+    title: "FOOTWEAR",
+    cat: "footwear",
   },
 ];
 
@@ -358,4 +301,4 @@ const allCategories = {
     Watches: [],
   },
 };
-export { adds, categories, products, bannerAds, allCategories };
+export { adds, categories, bannerAds, allCategories };

@@ -13,16 +13,44 @@ const userSlice = createSlice({
     loginSuccess: (state, action) => {
       state.isFetching = false;
       state.currentUser = action.payload;
+      state.error = false;
     },
     loginFailure: (state) => {
-        state.isFetching = false;
-        state.error = true;
+      state.isFetching = false;
+      state.error = true;
     },
-    logout:(state)=>{
+    registerStart: (state) => {
+      state.isFetching = true;
+    },
+    registerSuccess: (state, action) => {
+      state.isFetching = false;
+      state.error = false;
+
+      state.currentUser = action.payload;
+    },
+    registerFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    logout: (state) => {
       state.currentUser = null;
-    }
+      state.isFetching = false;
+      state.error = false;
+      // Clear both user and cart states
+      state.cart = { products: [], quantity: 0, total: 0 };
+      localStorage.removeItem('cart');
+    },
   },
 });
 
-export const {loginStart,loginSuccess,loginFailure,logout} = userSlice.actions;
+export const {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+  registerFailure,
+  registerStart,
+  registerSuccess,
+  logout,
+  initialState
+} = userSlice.actions;
 export default userSlice.reducer;

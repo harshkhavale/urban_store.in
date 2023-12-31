@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
@@ -12,12 +11,17 @@ import { useSelector } from "react-redux";
 import Navbar from "./components/Navbar";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
+import toast, { Toaster } from "react-hot-toast";
+
+import Carousel from "./components/Carousel";
 function App() {
-  const user = useSelector(state=>state.user.currentUser);
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <div className="App">
       <BrowserRouter>
-      <Navbar/>
+        <Toaster position="top-center" reverseOrder={false} />
+
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products/:category" element={<ProductList />} />
@@ -25,13 +29,15 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/register" element={<Register />} />
 
-          <Route path="/login" element={user ? <Home /> :<Login /> } />
+          <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<Success />} />
         </Routes>
-        <Newsletter/>
-        <Footer/>
+        <Carousel />
+
+        <Newsletter />
+        <Footer />
       </BrowserRouter>
     </div>
   );

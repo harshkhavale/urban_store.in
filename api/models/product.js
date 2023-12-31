@@ -10,7 +10,6 @@ const productSchema = new mongoose.Schema(
     brand: {
       type: String,
       required: true,
-      unique: true,
     },
     sub_title: {
       type: String,

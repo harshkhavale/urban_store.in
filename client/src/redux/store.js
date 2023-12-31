@@ -1,6 +1,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import cartReducer from "./cartRedux";
 import userReducer from "./userSlice";
+// Assuming initial state is exported from the respective files
+import { initialState as cartInitialState } from "./cartRedux";
+import { initialState as userInitialState } from "./userSlice";
+
+// Now you can use cartInitialState and userInitialState in your code
+
 import {
   persistStore,
   persistReducer,
@@ -12,7 +18,6 @@ import {
   REGISTER,
 } from "redux-persist";
 
-
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
@@ -21,12 +26,21 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
+const rootReducer = combineReducers({
+  user: userReducer,
+  cart: cartReducer,
+});
+
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
+  preloadedState: {
+    // Initialize user and cart state with localStorage data
+    user: { ...userInitialState, ...JSON.parse(localStorage.getItem('user')) },
+    cart: { ...cartInitialState, ...JSON.parse(localStorage.getItem('cart')) },
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

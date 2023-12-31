@@ -11,13 +11,30 @@ export const register = async (req, res) => {
       contact,
       password: hashedPassword,
     });
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
+    const user = await newUser.save();
+    const token = jwt.sign(
+      {
+        id: user.id,
+        isadmin: user.isadmin,
+      },
+      process.env.JWT_KEY,
+      {
+        expiresIn: "3d",
+      }
+    );
+
+    const returnUser = {
+      fullname: user.fullname,
+      email: user.email,
+      contact: user.contact,
+      isadmin: user.isadmin,
+      token: token,
+    };
+    res.status(201).json(returnUser);
   } catch (error) {
     res.status(500).json({
-      error: error.message,
+      message: error.message,
     });
-    console.log("error");
   }
 };
 
@@ -41,20 +58,25 @@ export const login = async (req, res) => {
     const token = jwt.sign(
       {
         id: user.id,
-        isadmin:user.isadmin
+        isadmin: user.isadmin,
       },
-      process.env.JWT_KEY,{
-        expiresIn:"3d"
+      process.env.JWT_KEY,
+      {
+        expiresIn: "3d",
       }
     );
-    delete user.password;
-    res.status(200).json({
-      token,
-      user,
-    });
+
+    const returnUser = {
+      fullname: user.fullname,
+      email: user.email,
+      contact: user.contact,
+      isadmin: user.isadmin,
+      token: token,
+    };
+    res.status(200).json(returnUser);
   } catch (error) {
     res.status(500).json({
-      error: error.message,
+      message: error.message,
     });
     console.log("error");
   }
