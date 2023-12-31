@@ -21,8 +21,8 @@ app.listen(process.env.PORT || 5001, () => {
   console.log("backend server is running on",process.env.PORT);
 });
 app.use(express.json());
-mongoose
-  .connect(process.env.MONGODB_URL)
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+
   .then(() => console.log("mongodb connetced!"))
   .catch((err) => console.log("error while connecting mongodb",err));
 app.get('/api/test',(req,res)=>{

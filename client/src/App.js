@@ -5,7 +5,6 @@ import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
-import Payment from "./pages/Payment";
 import Success from "./pages/Success";
 import { useSelector } from "react-redux";
 import Navbar from "./components/Navbar";
@@ -31,7 +30,6 @@ function App() {
 
           <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<Success />} />
         </Routes>
         <Carousel />

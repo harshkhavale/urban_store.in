@@ -38,7 +38,7 @@ const Navbar = () => {
     handleToggleClick();
   };
   const handleLogin = () => {
-    navigate('/login');
+    navigate("/login");
     handleToggleClick();
   };
   const handleSearch = () => {
@@ -95,7 +95,8 @@ const Navbar = () => {
                   <div
                     className={`right absolute p-6 top-0 z-[1000000] w-min right-0 bg-white shadow-2xl rounded-2xl flex  flex-col md:flex-row gap-4`}
                   >
-                    <CloseIcon style={{fontSize:'2rem'}}
+                    <CloseIcon
+                      style={{ fontSize: "2rem" }}
                       onClick={handleToggleClick}
                       className=" absolute cursor-pointer text-bold rounded-md top-3 right-0"
                     />
@@ -241,31 +242,31 @@ const Navbar = () => {
                     </select>
                   </div>
                   <div className="search bg-gray-200  h-min   flex justify-center items-center rounded-xl border-0  w-72  ">
-                        <input
-                          type="text"
-                          placeholder="Search"
-                          name="search"
-                          id="search"
-                          value={search}
-                          onChange={(e) => setSearch(e.target.value)}
-                          className=" outline-gray-300 rounded-s-xl outline-8 bg-transparent py-2 w-full px-4  "
-                        />
-                        <SearchIcon
-                          onClick={handleSearch}
-                          className=" cursor-pointer mx-2"
-                        />
-                      </div>
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      name="search"
+                      id="search"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      className=" outline-gray-300 rounded-s-xl outline-8 bg-transparent py-2 w-full px-4  "
+                    />
+                    <SearchIcon
+                      onClick={handleSearch}
+                      className=" cursor-pointer mx-2"
+                    />
+                  </div>
 
                   <Popup
                     id="account"
                     onHover={handleHover}
                     popupContent={
                       <div className="px-4 text-start flex flex-col w-[200px] absolute top-[250px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 shadow-md border rounded-md">
-                        <p className="text-bold font-bold text-red-400">
-                          welcome
-                        </p>
                         <p className="text-bold  inline-block">
                           To access account and manage orders
+                        </p>{" "}
+                        <p className="text-bold font-bold text-red-400">
+                          welcome
                         </p>
                         {user ? (
                           <div>
@@ -282,12 +283,14 @@ const Navbar = () => {
                           </div>
                         ) : (
                           <div className="flex gap-4">
-                            <button onClick={handleLogin} className="border-2 font-bold hover:bg-red-400 hover:text-white  p-2 my-2 w-full rounded-xl">
-                                Login/Signup
+                            <button
+                              onClick={handleLogin}
+                              className="border-2 font-bold hover:bg-red-400 hover:text-white  p-2 my-2 w-full rounded-xl"
+                            >
+                              Login/Signup
                             </button>
                           </div>
                         )}
-
                         <ul className=" text-start text-[17px] my-4">
                           <li className="   ">Orders</li>
                           <li className="  ">Wishlist</li>

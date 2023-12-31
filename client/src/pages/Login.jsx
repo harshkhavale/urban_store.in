@@ -116,7 +116,7 @@ const Login = () => {
                       <CircularProgress style={{ color: "#EC7063 " }} />
                     </Box>
                   ) : (
-                    <p>sign up</p>
+                    <p>sign in</p>
                   )}
                 </button>
               </div>

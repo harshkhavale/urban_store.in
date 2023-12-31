@@ -14,7 +14,7 @@ import BeenhereOutlinedIcon from "@mui/icons-material/BeenhereOutlined";
 import { ribbon, urbanlogo } from "../assets";
 import { removeProduct } from "../redux/cartRedux.js";
 import toast from "react-hot-toast";
-
+import { userRequest } from "../redux/requestMethods.js";
 const KEY = process.env.REACT_APP_STRIPE;
 const Cart = () => {
   const dispatch = useDispatch();
@@ -35,17 +35,18 @@ const Cart = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const res = await axios.post("/api/payments", {
+        const res = await userRequest.post("/payments", {
           tokenId: stripeToken.id,
           amount: cart.total * 100,
         });
-        toast.success("transaction successfull!")
+        toast.success("Transaction successful!");
         history.push("/success", { data: res.data });
       } catch (error) {
-        toast.error("transaction failed!")
-
+        toast.error("Transaction failed!");
       }
     };
+
+    // Only make the request if stripeToken is available and cart total is greater than or equal to 1
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, history]);
 
